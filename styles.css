@@ -178,8 +178,14 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
   max-width: 32ch;
 }
 
-.hero-cta {
+.hero-ctas {
   margin-top: 2.5rem;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 1rem;
+}
+
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 0.6rem;
   font-family: var(--mono); font-size: 0.95rem; text-transform: uppercase;
   padding: 0.9rem 1.6rem;
   border: 1px solid var(--ink);
@@ -188,6 +194,16 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 .hero-cta:hover, .hero-cta:focus-visible {
   background: var(--accent); color: var(--bg); border-color: var(--accent);
 }
+.hero-cta-ghost { border-color: var(--accent); color: var(--accent); }
+.hero-cta-ghost[hidden] { display: none; }
+.hero-cta-ghost:hover, .hero-cta-ghost:focus-visible { background: var(--accent); color: var(--bg); }
+
+.pulse-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: currentColor;
+  animation: pulseDot 1.8s ease-in-out infinite;
+}
+@keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@media (prefers-reduced-motion: reduce) { .pulse-dot { animation: none; } }
 
 .scroll-cue {
   position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
@@ -274,6 +290,9 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 }
 .block:not(.block-invert) .music-empty { color: var(--ink-mute); }
 .music-empty-sub { font-family: var(--mono); font-size: 0.72rem; text-transform: none; color: var(--ink-mute); }
+
+.music-empty-link { text-decoration: underline; text-underline-offset: 4px; }
+.music-card:hover .music-empty-link { color: inherit; }
 
 /* --- Footer --- */
 .site-footer {

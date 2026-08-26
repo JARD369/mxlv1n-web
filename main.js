@@ -131,24 +131,66 @@
     return url;
   }
 
+  function youtubeVideoId(url) {
+    var m = String(url || "").match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{6,})/);
+    return m ? m[1] : null;
+  }
+
+  function mountEmbed(target, platform, url) {
+    var iframe = document.createElement("iframe");
+    iframe.src = embedUrlFor(platform, url);
+    iframe.loading = "lazy";
+    iframe.allow = "autoplay; encrypted-media";
+    iframe.height = platform === "youtube" ? "180" : "152";
+    iframe.title = platform + " embed";
+    target.innerHTML = "";
+    target.appendChild(iframe);
+  }
+
+  /* YouTube channel links (no single video to embed) render as a link-out
+     card instead — YouTube blocks embedding channel pages in an iframe. */
+  function mountChannelLink(target, url) {
+    var dict = (data.i18n || {})[getInitialLang()] || {};
+    var a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.className = "music-empty music-empty-link";
+    a.textContent = dict.youtubeChannelCta || "View channel";
+    target.innerHTML = "";
+    target.appendChild(a);
+  }
+
   function mountMusicEmbeds() {
     var links = data.links || {};
-    ["spotify", "soundcloud", "youtube"].forEach(function (platform) {
+
+    ["spotify", "soundcloud"].forEach(function (platform) {
       var url = links[platform];
       if (!url) return;
       var target = $('[data-embed-target="' + platform + '"]');
       if (!target || target.dataset.mounted) return;
       target.dataset.mounted = "1";
-
-      var iframe = document.createElement("iframe");
-      iframe.src = embedUrlFor(platform, url);
-      iframe.loading = "lazy";
-      iframe.allow = "autoplay; encrypted-media";
-      iframe.height = platform === "youtube" ? "180" : "152";
-      iframe.title = platform + " embed";
-      target.innerHTML = "";
-      target.appendChild(iframe);
+      mountEmbed(target, platform, url);
     });
+
+    var ytTarget = $('[data-embed-target="youtube"]');
+    if (ytTarget && !ytTarget.dataset.mounted) {
+      if (links.youtube && youtubeVideoId(links.youtube)) {
+        ytTarget.dataset.mounted = "1";
+        mountEmbed(ytTarget, "youtube", links.youtube);
+      } else if (links.youtubeChannel) {
+        ytTarget.dataset.mounted = "1";
+        mountChannelLink(ytTarget, links.youtubeChannel);
+      }
+    }
+  }
+
+  function mountHeroNewRelease() {
+    var btn = $("#heroNewRelease");
+    var url = (data.newRelease || {}).url;
+    if (!btn || !url) return;
+    btn.href = url;
+    btn.hidden = false;
   }
 
   function setFooterYear() {
@@ -161,6 +203,7 @@
     safe(initLangSwitch, "initLangSwitch");
     safe(initReveals, "initReveals");
     safe(mountMusicEmbeds, "mountMusicEmbeds");
+    safe(mountHeroNewRelease, "mountHeroNewRelease");
     safe(setFooterYear, "setFooterYear");
     document.documentElement.classList.add("is-ready");
   }
