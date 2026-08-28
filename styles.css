@@ -171,13 +171,8 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 }
 
 /* Everything above the photo/scrim needs an explicit stacking context */
-.hero-num, .hero-kicker, .hero-title, .hero-sub, .hero-ctas, .scroll-cue {
+.hero-kicker, .hero-title, .hero-sub, .hero-ctas, .scroll-cue {
   position: relative; z-index: 2;
-}
-
-.hero-num {
-  position: absolute; top: calc(var(--nav-h) + 1.25rem); left: var(--gutter);
-  font-family: var(--mono); font-size: 0.85rem; color: var(--ink-mute);
 }
 
 .hero-kicker {
@@ -246,7 +241,6 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
   border-top: 1px solid var(--line);
 }
 .block-invert { background: var(--ink); color: var(--bg); }
-.block-invert .block-num,
 .block-invert .block-kicker,
 .block-invert .bio-meta-label,
 .block-invert .music-empty-sub { color: rgba(10,10,10,0.55); }
@@ -254,10 +248,8 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 .block-invert .music-card-head svg { color: var(--bg); }
 
 .block-head {
-  display: flex; align-items: baseline; gap: 1rem;
   margin-bottom: 1.5rem;
 }
-.block-num { font-size: 0.85rem; color: var(--ink-mute); }
 .block-kicker { font-size: 0.85rem; text-transform: uppercase; color: var(--ink-mute); }
 
 .block-body h2 {
