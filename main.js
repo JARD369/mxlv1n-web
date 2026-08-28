@@ -122,7 +122,7 @@
       return m ? "https://open.spotify.com/embed/" + m[1] + "/" + m[2] : url;
     }
     if (platform === "soundcloud") {
-      return "https://w.soundcloud.com/player/?url=" + encodeURIComponent(url) + "&color=%23d4ff3f&auto_play=false&visual=false";
+      return "https://w.soundcloud.com/player/?url=" + encodeURIComponent(url) + "&color=%23ffc400&auto_play=false&visual=false";
     }
     if (platform === "youtube") {
       var v = url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{6,})/);

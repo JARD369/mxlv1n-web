@@ -6,7 +6,7 @@
   --bg-2:      #111111;
   --ink:       #f5f5f0;
   --ink-mute:  #8a8a85;
-  --accent:    #d4ff3f;   /* single primary — acid/lime */
+  --accent:    #ffc400;   /* single primary — matches the real press-kit yellow */
   --line:      rgba(245,245,240,0.16);
   --line-soft: rgba(245,245,240,0.08);
 
@@ -226,7 +226,7 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 .block-invert { background: var(--ink); color: var(--bg); }
 .block-invert .block-num,
 .block-invert .block-kicker,
-.block-invert .bio-note,
+.block-invert .bio-meta-label,
 .block-invert .music-empty-sub { color: rgba(10,10,10,0.55); }
 .block-invert .music-card { border-color: rgba(10,10,10,0.3); }
 .block-invert .music-card-head svg { color: var(--bg); }
@@ -249,11 +249,14 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
   max-width: 58ch;
   line-height: 1.5;
 }
-.bio-note {
-  margin-top: 1rem;
-  font-size: 0.78rem;
-  color: var(--ink-mute);
+.bio-meta {
+  margin-top: 2.5rem;
+  display: flex; flex-wrap: wrap; gap: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
 }
+.bio-meta-label { font-size: 0.72rem; color: var(--ink-mute); margin-bottom: 0.4rem; }
+.bio-meta-value { font-size: 0.95rem; max-width: 40ch; }
 
 /* --- Music grid --- */
 .music-grid {
@@ -300,9 +303,14 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
   padding: 2.5rem var(--gutter);
   border-top: 1px solid var(--line);
 }
-.footer-rights { color: var(--ink-mute); font-size: 0.78rem; flex-basis: 100%; order: 3; }
+.footer-rights { color: var(--ink-mute); font-size: 0.78rem; flex-basis: 100%; order: 4; }
 .site-footer .ig-link { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-mute); }
 .site-footer .ig-link:hover, .site-footer .ig-link:focus-visible { color: var(--accent); }
+
+.footer-booking { display: flex; flex-wrap: wrap; align-items: center; gap: 0.9rem; font-size: 0.85rem; }
+.footer-booking-label { color: var(--ink-mute); font-size: 0.72rem; }
+.footer-booking a { color: var(--ink-mute); transition: color 0.2s var(--ease-out); }
+.footer-booking a:hover, .footer-booking a:focus-visible { color: var(--accent); }
 
 /* =============================================================
    7. Effects
