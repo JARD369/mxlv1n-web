@@ -155,8 +155,10 @@
     a.href = url;
     a.target = "_blank";
     a.rel = "noopener noreferrer";
-    a.className = "music-empty music-empty-link";
-    a.textContent = dict.youtubeChannelCta || "View channel";
+    a.className = "music-channel-link";
+    a.innerHTML =
+      '<img class="music-channel-thumb" src="assets/img/extra-pablo-1.jpg" alt="" loading="lazy" decoding="async" width="565" height="770" />' +
+      '<span class="music-channel-cta" data-i18n="youtubeChannelCta">' + escHTML(dict.youtubeChannelCta || "View channel") + "</span>";
     target.innerHTML = "";
     target.appendChild(a);
   }
