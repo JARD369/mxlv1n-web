@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#0a0a0a" />
 
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preload" as="image" href="assets/img/hero-pablo.jpg" fetchpriority="high" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,13 +39,9 @@
 <main id="main">
 
   <section class="hero" id="top">
+    <img class="hero-photo" src="assets/img/hero-pablo.jpg" alt="Pablo Malvin (MXLV1N) con guitarra" width="670" height="757" loading="eager" fetchpriority="high" decoding="async" />
+    <div class="hero-scrim" aria-hidden="true"></div>
     <div class="hero-num" aria-hidden="true">01</div>
-    <svg class="hero-disc" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
-      <circle cx="100" cy="100" r="96" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
-      <circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
-      <circle cx="100" cy="100" r="44" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25"/>
-      <circle cx="100" cy="100" r="10" fill="currentColor" opacity="0.8"/>
-    </svg>
     <p class="hero-kicker mono" data-i18n="heroKicker">Productor · DJ · Techno</p>
     <h1 class="hero-title reveal" data-split>MXLV1N</h1>
     <p class="hero-sub" data-i18n="heroSub">Ritmo crudo, groove oscuro, sonido de club.</p>
@@ -66,20 +63,25 @@
       <span class="block-num mono" data-i18n="bioNum">02</span>
       <p class="block-kicker mono" data-i18n="bioKicker">Quién es</p>
     </div>
-    <div class="block-body">
-      <h2 class="reveal" data-split data-i18n="bioTitle">Viaje emocional y cinematográfico.</h2>
-      <p class="bio-text reveal" data-i18n="bioText">Pablo Malvin es músico y diseñador sonoro. Debutó como DJ en 2017 en el Club Janis (CDMX) con grooves hipnóticos de techno que atraviesan el rock, el jazz y texturas de ritmos europeos. Su estilo de mezcla es fresco y elegante, melódico y rítmico: sets envolventes que transforman la pista de baile en un viaje emocional y cinematográfico. Con un oído curado y una fuerte sensibilidad estética, crea experiencias sonoras inmersivas jugando con contrastes entre lo analógico y lo digital, lo nostálgico y lo futurista, priorizando siempre la conexión energética con el público. Su trabajo atraviesa programas de TV, fashion films y podcasts.</p>
+    <div class="block-body bio-grid">
+      <div class="bio-text-col">
+        <h2 class="reveal" data-split data-i18n="bioTitle">Viaje emocional y cinematográfico.</h2>
+        <p class="bio-text reveal" data-i18n="bioText">Pablo Malvin es músico y diseñador sonoro. Debutó como DJ en 2017 en el Club Janis (CDMX) con grooves hipnóticos de techno que atraviesan el rock, el jazz y texturas de ritmos europeos. Su estilo de mezcla es fresco y elegante, melódico y rítmico: sets envolventes que transforman la pista de baile en un viaje emocional y cinematográfico. Con un oído curado y una fuerte sensibilidad estética, crea experiencias sonoras inmersivas jugando con contrastes entre lo analógico y lo digital, lo nostálgico y lo futurista, priorizando siempre la conexión energética con el público. Su trabajo atraviesa programas de TV, fashion films y podcasts.</p>
 
-      <div class="bio-meta reveal">
-        <div class="bio-meta-block">
-          <p class="mono bio-meta-label" data-i18n="genresLabel">Géneros</p>
-          <p class="bio-meta-value">Progressive · Melodic Techno · Breakbeat · Indie Dance · Dance &amp; Funk</p>
-        </div>
-        <div class="bio-meta-block">
-          <p class="mono bio-meta-label" data-i18n="baseLabel">Con base en</p>
-          <p class="bio-meta-value">CDMX</p>
+        <div class="bio-meta reveal">
+          <div class="bio-meta-block">
+            <p class="mono bio-meta-label" data-i18n="genresLabel">Géneros</p>
+            <p class="bio-meta-value">Progressive · Melodic Techno · Breakbeat · Indie Dance · Dance &amp; Funk</p>
+          </div>
+          <div class="bio-meta-block">
+            <p class="mono bio-meta-label" data-i18n="baseLabel">Con base en</p>
+            <p class="bio-meta-value">CDMX</p>
+          </div>
         </div>
       </div>
+      <figure class="bio-photo-wrap reveal">
+        <img class="bio-photo" src="assets/img/bio-pablo.jpg" alt="Retrato de Pablo Malvin (MXLV1N)" width="530" height="631" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
