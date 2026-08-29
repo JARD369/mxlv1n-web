@@ -37,6 +37,11 @@
       }
     });
 
+    $$("[data-i18n-alt]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-alt");
+      if (dict[key] != null) el.setAttribute("alt", dict[key]);
+    });
+
     var switchLabel = $("#langSwitchLabel");
     if (switchLabel) switchLabel.textContent = dict.navLangSwitchTo || (lang === "es" ? "EN" : "ES");
 
@@ -157,7 +162,7 @@
     a.rel = "noopener noreferrer";
     a.className = "music-channel-link";
     a.innerHTML =
-      '<img class="music-channel-thumb" src="assets/img/extra-pablo-1.jpg" alt="" loading="lazy" decoding="async" width="621" height="900" />' +
+      '<img class="music-channel-thumb" src="assets/img/youtube-thumb.jpg" alt="" loading="lazy" decoding="async" width="621" height="900" />' +
       '<span class="music-channel-cta" data-i18n="youtubeChannelCta">' + escHTML(dict.youtubeChannelCta || "View channel") + "</span>";
     target.innerHTML = "";
     target.appendChild(a);

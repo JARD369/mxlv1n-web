@@ -27,6 +27,7 @@
   <nav class="main-nav" aria-label="Principal">
     <a href="#bio" data-i18n="navBio">Bio</a>
     <a href="#musica" data-i18n="navMusic">Música</a>
+    <a href="#galeria" data-i18n="navGallery">Galería</a>
     <a class="ig-link" href="https://www.instagram.com/pablomalvin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de MXLV1N">
       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.43.4a4.9 4.9 0 0 1 1.77 1.15 4.9 4.9 0 0 1 1.15 1.77c.16.46.35 1.26.4 2.43.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.4 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.46.16-1.26.35-2.43.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.43-.4a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.16-.46-.35-1.26-.4-2.43C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.24-1.97.4-2.43a4.9 4.9 0 0 1 1.15-1.77A4.9 4.9 0 0 1 5.59 1.8c.46-.16 1.26-.35 2.43-.4C9.29 1.34 9.67 1.33 12 1.33m0 2c-3.15 0-3.5.01-4.73.07-1 .05-1.54.21-1.9.35-.48.19-.82.41-1.18.77-.36.36-.58.7-.77 1.18-.14.36-.3.9-.35 1.9C3 8.5 2.99 8.85 2.99 12s.01 3.5.08 4.73c.05 1 .21 1.54.35 1.9.19.48.41.82.77 1.18.36.36.7.58 1.18.77.36.14.9.3 1.9.35 1.23.06 1.58.07 4.73.07s3.5-.01 4.73-.07c1-.05 1.54-.21 1.9-.35.48-.19.82-.41 1.18-.77.36-.36.58-.7.77-1.18.14-.36.3-.9.35-1.9.06-1.23.07-1.58.07-4.73s-.01-3.5-.07-4.73c-.05-1-.21-1.54-.35-1.9a3.2 3.2 0 0 0-.77-1.18 3.2 3.2 0 0 0-1.18-.77c-.36-.14-.9-.3-1.9-.35C15.5 4.21 15.15 4.2 12 4.2m0 3.4a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8m0 2a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8m5.6-3.7a1.03 1.03 0 1 1-2.06 0 1.03 1.03 0 0 1 2.06 0"/></svg>
     </a>
@@ -39,7 +40,7 @@
 <main id="main">
 
   <section class="hero" id="top">
-    <img class="hero-photo" src="assets/img/hero-pablo.jpg" alt="Pablo Malvin (MXLV1N) con audífonos" width="800" height="1200" loading="eager" fetchpriority="high" decoding="async" />
+    <img class="hero-photo" src="assets/img/hero-pablo.jpg" alt="Pablo Malvin (MXLV1N) con audífonos" data-i18n-alt="heroPhotoAlt" width="800" height="1200" loading="eager" fetchpriority="high" decoding="async" />
     <div class="hero-scrim" aria-hidden="true"></div>
     <p class="hero-kicker mono" data-i18n="heroKicker">Productor · DJ · Techno</p>
     <h1 class="hero-title reveal" data-split>MXLV1N</h1>
@@ -78,7 +79,7 @@
         </div>
       </div>
       <figure class="bio-photo-wrap reveal">
-        <img class="bio-photo" src="assets/img/bio-pablo.jpg" alt="Retrato de Pablo Malvin (MXLV1N)" width="596" height="900" loading="lazy" decoding="async" />
+        <img class="bio-photo" src="assets/img/bio-pablo.jpg" alt="Retrato de Pablo Malvin (MXLV1N)" data-i18n-alt="bioPhotoAlt" width="596" height="900" loading="lazy" decoding="async" />
       </figure>
     </div>
   </section>
@@ -131,6 +132,32 @@
           </div>
         </article>
 
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="galeria">
+    <div class="block-head">
+      <p class="block-kicker mono" data-i18n="galleryKicker">Fotos</p>
+    </div>
+    <div class="block-body">
+      <h2 class="reveal" data-split data-i18n="galleryTitle">En vivo y en estudio.</h2>
+      <div class="gallery-grid">
+        <figure class="gallery-item reveal">
+          <img src="assets/img/gallery-1.jpg" alt="Pablo Malvin de pie, tocando la guitarra" data-i18n-alt="galleryAlt1" width="654" height="900" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="assets/img/gallery-2.jpg" alt="Pablo Malvin tocando la guitarra de perfil" data-i18n-alt="galleryAlt2" width="696" height="900" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="assets/img/gallery-3.jpg" alt="Pablo Malvin agachado, tocando la guitarra con intensidad" data-i18n-alt="galleryAlt3" width="680" height="900" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="assets/img/gallery-4.jpg" alt="Retrato de Pablo Malvin tocando la guitarra, luz dramática" data-i18n-alt="galleryAlt4" width="600" height="900" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="assets/img/gallery-5.jpg" alt="Retrato de Pablo Malvin en blanco y negro, de perfil" data-i18n-alt="galleryAlt5" width="482" height="900" loading="lazy" decoding="async" />
+        </figure>
       </div>
     </div>
   </section>
