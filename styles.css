@@ -389,6 +389,9 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 @media (max-width: 539px) {
   .main-nav { gap: 0.85rem; }
   .main-nav a:not(.ig-link) { font-size: 0.72rem; }
+
+  .site-footer { flex-direction: column; text-align: center; }
+  .footer-booking { justify-content: center; }
 }
 
 /* =============================================================
