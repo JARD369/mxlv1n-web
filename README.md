@@ -9,7 +9,7 @@ index.html        ← única página (bio + música)
 styles.css         ← todos los estilos
 main.js             ← idioma ES/EN, animaciones de scroll, embeds de música
 lib/manifest.js  ← todo el contenido editable (textos ES/EN, enlaces)
-assets/favicon.svg
+assets/favicon.jpg
 .htaccess              ← solo si algún día hosteas en Apache/Hostinger
 _headers               ← reglas de caché para Cloudflare Pages
 ```
