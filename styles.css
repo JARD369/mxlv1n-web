@@ -279,6 +279,7 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 /* --- Gallery grid --- */
 .gallery-grid {
   margin-top: 2.5rem;
+  max-width: 640px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1px;
@@ -286,12 +287,47 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
   border: 1px solid var(--line);
 }
 .gallery-item { aspect-ratio: 3 / 4; overflow: hidden; background: var(--bg); }
+.gallery-trigger { display: block; width: 100%; height: 100%; cursor: zoom-in; }
 .gallery-item img {
   width: 100%; height: 100%; object-fit: cover;
   filter: grayscale(0.35) contrast(1.05);
   transition: filter 0.25s var(--ease-out), transform 0.4s var(--ease-out);
 }
 .gallery-item:hover img { filter: grayscale(0) contrast(1); transform: scale(1.04); }
+
+/* --- Lightbox --- */
+dialog.lightbox {
+  position: fixed; inset: 0; margin: 0; padding: 0;
+  width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh;
+  background: transparent; border: 0;
+  align-items: center; justify-content: center;
+}
+dialog.lightbox[open] { display: flex; }
+.lightbox::backdrop { background: rgba(10, 10, 10, 0.92); }
+.lightbox-img { max-width: 90vw; max-height: 88vh; width: auto; height: auto; object-fit: contain; }
+
+.lightbox-close, .lightbox-nav {
+  position: absolute;
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px;
+  color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+  font-size: 1.3rem; line-height: 1;
+  transition: background 0.15s var(--ease-out), color 0.15s var(--ease-out), border-color 0.15s var(--ease-out);
+}
+.lightbox-close:hover, .lightbox-nav:hover,
+.lightbox-close:focus-visible, .lightbox-nav:focus-visible {
+  background: var(--accent); color: var(--bg); border-color: var(--accent);
+}
+.lightbox-close { top: 1.25rem; right: 1.25rem; }
+.lightbox-nav { top: 50%; transform: translateY(-50%); font-size: 1.8rem; }
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
+
+@media (max-width: 539px) {
+  .lightbox-close { top: 0.75rem; right: 0.75rem; }
+  .lightbox-prev { left: 0.5rem; }
+  .lightbox-next { right: 0.5rem; }
+}
 
 /* --- Music grid --- */
 .music-grid {

@@ -42,6 +42,11 @@
       if (dict[key] != null) el.setAttribute("alt", dict[key]);
     });
 
+    $$("[data-i18n-aria]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-aria");
+      if (dict[key] != null) el.setAttribute("aria-label", dict[key]);
+    });
+
     var switchLabel = $("#langSwitchLabel");
     if (switchLabel) switchLabel.textContent = dict.navLangSwitchTo || (lang === "es" ? "EN" : "ES");
 
@@ -205,12 +210,54 @@
     if (el) el.textContent = data.year || new Date().getFullYear();
   }
 
+  /* Gallery lightbox — native <dialog>, so Escape / focus trapping come free. */
+  function initGalleryLightbox() {
+    var dialog = $("#lightbox");
+    var imgEl = dialog ? dialog.querySelector(".lightbox-img") : null;
+    var closeBtn = dialog ? dialog.querySelector(".lightbox-close") : null;
+    var prevBtn = dialog ? dialog.querySelector(".lightbox-prev") : null;
+    var nextBtn = dialog ? dialog.querySelector(".lightbox-next") : null;
+    var triggers = $$(".gallery-trigger");
+    if (!dialog || !imgEl || !triggers.length) return;
+
+    var current = 0;
+
+    function show(i) {
+      current = (i + triggers.length) % triggers.length;
+      var srcImg = triggers[current].querySelector("img");
+      if (!srcImg) return;
+      imgEl.src = srcImg.getAttribute("src");
+      imgEl.alt = srcImg.getAttribute("alt") || "";
+    }
+
+    triggers.forEach(function (btn, i) {
+      btn.addEventListener("click", function () {
+        show(i);
+        dialog.showModal();
+      });
+    });
+
+    if (closeBtn) closeBtn.addEventListener("click", function () { dialog.close(); });
+    if (prevBtn) prevBtn.addEventListener("click", function () { show(current - 1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { show(current + 1); });
+
+    dialog.addEventListener("click", function (e) {
+      if (e.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") show(current + 1);
+      if (e.key === "ArrowLeft") show(current - 1);
+    });
+  }
+
   function boot() {
     safe(initStaticSplits, "initStaticSplits");
     safe(initLangSwitch, "initLangSwitch");
     safe(initReveals, "initReveals");
     safe(mountMusicEmbeds, "mountMusicEmbeds");
     safe(mountHeroNewRelease, "mountHeroNewRelease");
+    safe(initGalleryLightbox, "initGalleryLightbox");
     safe(setFooterYear, "setFooterYear");
     document.documentElement.classList.add("is-ready");
   }
