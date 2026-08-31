@@ -422,6 +422,10 @@ dialog.lightbox[open] { display: flex; }
   .bio-grid { display: grid; grid-template-columns: 1.3fr 0.9fr; align-items: start; gap: 3rem; }
 }
 
+@media (min-width: 1280px) {
+  .gallery-grid { max-width: none; grid-template-columns: repeat(6, 1fr); }
+}
+
 @media (max-width: 539px) {
   .main-nav { gap: 0.85rem; }
   .main-nav a:not(.ig-link) { font-size: 0.72rem; }
