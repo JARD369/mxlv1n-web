@@ -199,9 +199,16 @@
 
   function mountHeroNewRelease() {
     var btn = $("#heroNewRelease");
-    var url = (data.newRelease || {}).url;
-    if (!btn || !url) return;
-    btn.href = url;
+    var release = data.newRelease || {};
+    if (!btn || !release.url) return;
+    btn.href = release.url;
+
+    var thumb = $("#heroNewReleaseThumb", btn);
+    if (thumb && release.thumbnail) {
+      thumb.src = release.thumbnail;
+      thumb.alt = release.title || "";
+    }
+
     btn.hidden = false;
   }
 

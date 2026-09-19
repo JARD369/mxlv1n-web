@@ -211,16 +211,14 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 .hero-cta:hover, .hero-cta:focus-visible {
   background: var(--accent); color: var(--bg); border-color: var(--accent);
 }
-.hero-cta-ghost { border-color: var(--accent); color: var(--accent); }
+.hero-cta-ghost { border-color: var(--accent); color: var(--accent); padding-block: 0.5rem; }
 .hero-cta-ghost[hidden] { display: none; }
 .hero-cta-ghost:hover, .hero-cta-ghost:focus-visible { background: var(--accent); color: var(--bg); }
 
-.pulse-dot {
-  width: 7px; height: 7px; border-radius: 50%; background: currentColor;
-  animation: pulseDot 1.8s ease-in-out infinite;
+.hero-cta-thumb {
+  width: 40px; height: 40px; object-fit: cover;
+  filter: grayscale(0.15) contrast(1.03);
 }
-@keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-@media (prefers-reduced-motion: reduce) { .pulse-dot { animation: none; } }
 
 .scroll-cue {
   position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
