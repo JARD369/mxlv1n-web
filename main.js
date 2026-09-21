@@ -197,11 +197,42 @@
     }
   }
 
+  /* Featured release: highlighted section under the hero (YouTube video +
+     Spotify link) and the hero button that jumps to it. */
+  function mountRelease() {
+    var release = data.newRelease || {};
+    var section = $("#lanzamiento");
+    var holder = $("#releaseVideo");
+    if (!section || !holder || !release.youtubeId || holder.children.length > 0) return;
+
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(release.youtubeId) + "?rel=0";
+    iframe.title = release.youtubeTitle || release.title || "Video";
+    iframe.loading = "lazy";
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.allowFullscreen = true;
+    holder.appendChild(iframe);
+
+    var title = $("#releaseTitle");
+    if (title && release.title) title.textContent = release.title;
+
+    var spotify = $("#releaseSpotify");
+    if (spotify && release.spotifyUrl) {
+      spotify.href = release.spotifyUrl;
+      spotify.hidden = false;
+    }
+
+    section.hidden = false;
+
+    var cue = $(".scroll-cue");
+    if (cue) cue.setAttribute("href", "#lanzamiento");
+  }
+
   function mountHeroNewRelease() {
     var btn = $("#heroNewRelease");
     var release = data.newRelease || {};
-    if (!btn || !release.url) return;
-    btn.href = release.url;
+    if (!btn || !release.youtubeId) return;
 
     var thumb = $("#heroNewReleaseThumb", btn);
     if (thumb && release.thumbnail) {
@@ -261,6 +292,7 @@
   function boot() {
     safe(initStaticSplits, "initStaticSplits");
     safe(initLangSwitch, "initLangSwitch");
+    safe(mountRelease, "mountRelease");
     safe(initReveals, "initReveals");
     safe(mountMusicEmbeds, "mountMusicEmbeds");
     safe(mountHeroNewRelease, "mountHeroNewRelease");
