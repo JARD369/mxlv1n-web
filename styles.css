@@ -276,21 +276,29 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 
 /* --- Featured release --- */
 #lanzamiento[hidden], .release-spotify[hidden] { display: none; }
+#lanzamiento {
+  text-align: center;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 58%, rgba(255, 196, 0, 0.18), transparent 70%),
+    var(--bg);
+}
+#lanzamiento .block-kicker { color: var(--accent); }
+#lanzamiento .block-body h2 { max-width: none; font-size: clamp(3rem, 11vw, 8.5rem); }
 .release-video {
-  margin-top: 2.5rem; max-width: 960px;
+  margin: 2.5rem auto 0; max-width: 1100px;
   aspect-ratio: 16 / 9;
-  border: 1px solid rgba(10,10,10,0.3); background: var(--bg);
+  border: 1px solid var(--accent); background: #000;
+  box-shadow: 0 0 70px rgba(255, 196, 0, 0.22);
 }
 .release-video iframe { display: block; width: 100%; height: 100%; border: 0; }
 .release-spotify {
-  display: inline-block; margin-top: 1.25rem;
-  font-size: 0.85rem; text-transform: uppercase;
-  padding: 0.75rem 1.25rem; border: 1px solid currentColor;
-  transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+  display: inline-block; margin-top: 2rem;
+  font-size: 0.9rem; text-transform: uppercase;
+  padding: 0.9rem 1.6rem;
+  background: var(--accent); color: var(--bg); border: 1px solid var(--accent);
+  transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out);
 }
-.release-spotify:hover, .release-spotify:focus-visible {
-  background: var(--accent); color: var(--bg); border-color: var(--accent);
-}
+.release-spotify:hover, .release-spotify:focus-visible { background: transparent; color: var(--accent); }
 
 /* --- Gallery grid --- */
 .gallery-grid {
