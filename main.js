@@ -197,34 +197,67 @@
     }
   }
 
-  /* Featured release: a section ahead of the hero (first thing visible on
-     load) with the YouTube video + a Spotify link. Hidden entirely when
-     there's no active release, so the hero becomes first again. */
+  /* Featured release: a modal with the YouTube video + a Spotify link.
+     Opens on its own on first load (once per browser session), and again
+     any time the hero's "Nuevo lanzamiento" button is pressed. Nothing
+     happens at all when there's no active release. */
+  var RELEASE_SEEN_KEY = "mxlv1n-release-seen";
+
   function mountRelease() {
     var release = data.newRelease || {};
-    var section = $("#lanzamiento");
+    var dialog = $("#releaseModal");
     var holder = $("#releaseVideo");
-    if (!section || !holder || !release.youtubeId || holder.children.length > 0) return;
+    if (!dialog || !holder || !release.youtubeId) return;
 
-    var iframe = document.createElement("iframe");
-    iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(release.youtubeId) + "?rel=0";
-    iframe.title = release.youtubeTitle || release.title || "Video";
-    iframe.loading = "lazy";
-    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-    iframe.referrerPolicy = "strict-origin-when-cross-origin";
-    iframe.allowFullscreen = true;
-    holder.appendChild(iframe);
+    if (holder.children.length === 0) {
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(release.youtubeId) + "?rel=0";
+      iframe.title = release.youtubeTitle || release.title || "Video";
+      iframe.loading = "lazy";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.allowFullscreen = true;
+      holder.appendChild(iframe);
 
-    var title = $("#releaseTitle");
-    if (title && release.title) title.textContent = release.title;
+      var title = $("#releaseTitle");
+      if (title && release.title) title.textContent = release.title;
 
-    var spotify = $("#releaseSpotify");
-    if (spotify && release.spotifyUrl) {
-      spotify.href = release.spotifyUrl;
-      spotify.hidden = false;
+      var spotify = $("#releaseSpotify");
+      if (spotify && release.spotifyUrl) {
+        spotify.href = release.spotifyUrl;
+        spotify.hidden = false;
+      }
     }
 
-    section.hidden = false;
+    var closeBtn = $(".release-modal-close", dialog);
+    if (closeBtn && !closeBtn.dataset.bound) {
+      closeBtn.dataset.bound = "1";
+      closeBtn.addEventListener("click", function () { dialog.close(); });
+      dialog.addEventListener("click", function (e) {
+        if (e.target === dialog) dialog.close();
+      });
+      dialog.addEventListener("close", function () {
+        try { sessionStorage.setItem(RELEASE_SEEN_KEY, release.youtubeId); } catch (e) { /* ignore */ }
+      });
+    }
+
+    var heroBtn = $("#heroNewRelease");
+    if (heroBtn) {
+      var thumb = $("#heroNewReleaseThumb", heroBtn);
+      if (thumb && release.thumbnail) {
+        thumb.src = release.thumbnail;
+        thumb.alt = release.title || "";
+      }
+      heroBtn.hidden = false;
+      if (!heroBtn.dataset.bound) {
+        heroBtn.dataset.bound = "1";
+        heroBtn.addEventListener("click", function () { dialog.showModal(); });
+      }
+    }
+
+    var alreadySeen = false;
+    try { alreadySeen = sessionStorage.getItem(RELEASE_SEEN_KEY) === release.youtubeId; } catch (e) { /* ignore */ }
+    if (!alreadySeen && !dialog.open) dialog.showModal();
   }
 
   function setFooterYear() {

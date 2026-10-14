@@ -211,6 +211,15 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 .hero-cta:hover, .hero-cta:focus-visible {
   background: var(--accent); color: var(--bg); border-color: var(--accent);
 }
+.hero-cta-ghost { border-color: var(--accent); color: var(--accent); padding-block: 0.5rem; }
+.hero-cta-ghost[hidden] { display: none; }
+.hero-cta-ghost:hover, .hero-cta-ghost:focus-visible { background: var(--accent); color: var(--bg); }
+
+.hero-cta-thumb {
+  width: 40px; height: 40px; object-fit: cover;
+  filter: grayscale(0.15) contrast(1.03);
+}
+
 .scroll-cue {
   position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
@@ -265,38 +274,62 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 .bio-photo-wrap { border: 1px solid var(--line); max-width: 360px; }
 .bio-photo { width: 100%; height: auto; filter: grayscale(0.1) contrast(1.03); }
 
-/* --- Featured release --- */
-#lanzamiento[hidden], .release-spotify[hidden] { display: none; }
-#lanzamiento {
+/* --- Featured release modal --- */
+dialog.release-modal {
+  position: fixed; inset: 0; margin: 0; padding: 1.5rem;
+  width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh;
+  background: transparent; border: 0; color: var(--ink);
+  align-items: center; justify-content: center;
+  overflow-y: auto;
+}
+dialog.release-modal[open] { display: flex; }
+.release-modal::backdrop { background: rgba(10, 10, 10, 0.92); }
+
+.release-modal-inner {
+  position: relative;
+  width: 100%; max-width: 1000px;
+  margin: auto;
+  padding: clamp(1.5rem, 5vw, 3rem);
   text-align: center;
   background:
-    radial-gradient(ellipse 70% 55% at 50% 58%, rgba(255, 196, 0, 0.18), transparent 70%),
+    radial-gradient(ellipse 70% 65% at 50% 45%, rgba(255, 196, 0, 0.18), transparent 70%),
     var(--bg);
+  border: 1px solid var(--line);
 }
-#lanzamiento .block-kicker { color: var(--accent); }
-#lanzamiento .block-body h2 { max-width: none; font-size: clamp(3rem, 11vw, 8.5rem); }
+.release-modal-inner .block-kicker { color: var(--accent); margin-bottom: 0.5rem; }
+.release-modal-inner h2 {
+  font-family: var(--display); text-transform: uppercase; font-weight: 400;
+  font-size: clamp(2.2rem, 7vw, 5rem); line-height: 0.95;
+}
+
+.release-modal-close {
+  position: absolute; top: 1rem; right: 1rem; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px;
+  color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+  font-size: 1.3rem; line-height: 1;
+  transition: background 0.15s var(--ease-out), color 0.15s var(--ease-out), border-color 0.15s var(--ease-out);
+}
+.release-modal-close:hover, .release-modal-close:focus-visible {
+  background: var(--accent); color: var(--bg); border-color: var(--accent);
+}
+
 .release-video {
-  margin: 2.5rem auto 0; max-width: 1100px;
+  margin: 2rem auto 0; max-width: 100%;
   aspect-ratio: 16 / 9;
   border: 1px solid var(--accent); background: #000;
   box-shadow: 0 0 70px rgba(255, 196, 0, 0.22);
 }
 .release-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+.release-spotify[hidden] { display: none; }
 .release-spotify {
-  display: inline-block; margin-top: 2rem;
+  display: inline-block; margin-top: 1.75rem;
   font-size: 0.9rem; text-transform: uppercase;
   padding: 0.9rem 1.6rem;
   background: var(--accent); color: var(--bg); border: 1px solid var(--accent);
   transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out);
 }
 .release-spotify:hover, .release-spotify:focus-visible { background: transparent; color: var(--accent); }
-
-.release-continue {
-  display: block; margin-top: 2.5rem;
-  font-size: 0.78rem; text-transform: uppercase; color: var(--ink-mute);
-  transition: color 0.2s var(--ease-out);
-}
-.release-continue:hover, .release-continue:focus-visible { color: var(--accent); }
 
 /* --- Gallery grid --- */
 .gallery-grid {

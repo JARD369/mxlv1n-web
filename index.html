@@ -39,22 +39,6 @@
 
 <main id="main">
 
-  <section class="block" id="lanzamiento" hidden>
-    <div class="block-head">
-      <p class="block-kicker mono" data-i18n="releaseKicker">Nuevo lanzamiento</p>
-    </div>
-    <div class="block-body">
-      <h2 id="releaseTitle">Vos y Yo</h2>
-      <div class="release-video" id="releaseVideo"></div>
-      <a class="release-spotify mono" id="releaseSpotify" href="#" target="_blank" rel="noopener noreferrer" hidden>
-        <span data-i18n="releaseListen">Escuchar en Spotify</span> ↗
-      </a>
-      <a class="release-continue mono" href="#hero">
-        <span data-i18n="releaseContinue">Seguir viendo</span> ↓
-      </a>
-    </div>
-  </section>
-
   <section class="hero" id="hero">
     <img class="hero-photo" src="assets/img/hero-pablo.jpg" alt="Pablo Malvin (MXLV1N) cantando con micrófono vintage" data-i18n-alt="heroPhotoAlt" width="869" height="1000" loading="eager" fetchpriority="high" decoding="async" />
     <div class="hero-scrim" aria-hidden="true"></div>
@@ -63,6 +47,10 @@
     <p class="hero-sub" data-i18n="heroSub">Ritmo crudo, groove oscuro, sonido de club.</p>
     <div class="hero-ctas">
       <a class="hero-cta" href="#musica"><span data-i18n="heroCta">Escuchar</span> →</a>
+      <button type="button" class="hero-cta hero-cta-ghost" id="heroNewRelease" hidden>
+        <img class="hero-cta-thumb" id="heroNewReleaseThumb" src="" alt="" width="40" height="40" loading="lazy" decoding="async" />
+        <span data-i18n="heroNewRelease">Nuevo lanzamiento</span>
+      </button>
     </div>
     <a class="scroll-cue mono" href="#bio">
       <span data-i18n="scrollCue">Desliza</span>
@@ -220,6 +208,18 @@
       </div>
     </div>
   </section>
+
+  <dialog class="release-modal" id="releaseModal">
+    <button class="release-modal-close" type="button" aria-label="Cerrar" data-i18n-aria="lightboxClose">✕</button>
+    <div class="release-modal-inner">
+      <p class="block-kicker mono" data-i18n="releaseKicker">Nuevo lanzamiento</p>
+      <h2 id="releaseTitle">Vos y Yo</h2>
+      <div class="release-video" id="releaseVideo"></div>
+      <a class="release-spotify mono" id="releaseSpotify" href="#" target="_blank" rel="noopener noreferrer" hidden>
+        <span data-i18n="releaseListen">Escuchar en Spotify</span> ↗
+      </a>
+    </div>
+  </dialog>
 
   <dialog class="lightbox" id="lightbox">
     <button class="lightbox-close" type="button" aria-label="Cerrar" data-i18n-aria="lightboxClose">✕</button>
