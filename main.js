@@ -197,8 +197,9 @@
     }
   }
 
-  /* Featured release: highlighted section under the hero (YouTube video +
-     Spotify link) and the hero button that jumps to it. */
+  /* Featured release: a section ahead of the hero (first thing visible on
+     load) with the YouTube video + a Spotify link. Hidden entirely when
+     there's no active release, so the hero becomes first again. */
   function mountRelease() {
     var release = data.newRelease || {};
     var section = $("#lanzamiento");
@@ -224,23 +225,6 @@
     }
 
     section.hidden = false;
-
-    var cue = $(".scroll-cue");
-    if (cue) cue.setAttribute("href", "#lanzamiento");
-  }
-
-  function mountHeroNewRelease() {
-    var btn = $("#heroNewRelease");
-    var release = data.newRelease || {};
-    if (!btn || !release.youtubeId) return;
-
-    var thumb = $("#heroNewReleaseThumb", btn);
-    if (thumb && release.thumbnail) {
-      thumb.src = release.thumbnail;
-      thumb.alt = release.title || "";
-    }
-
-    btn.hidden = false;
   }
 
   function setFooterYear() {
@@ -295,7 +279,6 @@
     safe(mountRelease, "mountRelease");
     safe(initReveals, "initReveals");
     safe(mountMusicEmbeds, "mountMusicEmbeds");
-    safe(mountHeroNewRelease, "mountHeroNewRelease");
     safe(initGalleryLightbox, "initGalleryLightbox");
     safe(setFooterYear, "setFooterYear");
     document.documentElement.classList.add("is-ready");

@@ -211,15 +211,6 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
 .hero-cta:hover, .hero-cta:focus-visible {
   background: var(--accent); color: var(--bg); border-color: var(--accent);
 }
-.hero-cta-ghost { border-color: var(--accent); color: var(--accent); padding-block: 0.5rem; }
-.hero-cta-ghost[hidden] { display: none; }
-.hero-cta-ghost:hover, .hero-cta-ghost:focus-visible { background: var(--accent); color: var(--bg); }
-
-.hero-cta-thumb {
-  width: 40px; height: 40px; object-fit: cover;
-  filter: grayscale(0.15) contrast(1.03);
-}
-
 .scroll-cue {
   position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
@@ -299,6 +290,13 @@ h1, h2 { font-family: var(--display); font-weight: 400; text-transform: uppercas
   transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out);
 }
 .release-spotify:hover, .release-spotify:focus-visible { background: transparent; color: var(--accent); }
+
+.release-continue {
+  display: block; margin-top: 2.5rem;
+  font-size: 0.78rem; text-transform: uppercase; color: var(--ink-mute);
+  transition: color 0.2s var(--ease-out);
+}
+.release-continue:hover, .release-continue:focus-visible { color: var(--accent); }
 
 /* --- Gallery grid --- */
 .gallery-grid {
