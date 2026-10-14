@@ -248,26 +248,25 @@
       <h2 class="reveal" data-split data-i18n="sceneTitle">Momentos del rodaje.</h2>
       <div class="scene-grid">
         <figure class="scene-item reveal">
-          <button class="scene-trigger" type="button" aria-label="Reproducir video" data-i18n-aria="scenePlay">
+          <button class="scene-trigger" type="button" aria-label="Reproducir video" data-i18n-aria="scenePlay" data-video-src="assets/video/scene-1.mp4">
             <img class="scene-poster" src="assets/video/scene-1-poster.jpg" alt="Escena nocturna del rodaje de Vos y Yo" data-i18n-alt="sceneAlt1" width="816" height="480" loading="lazy" decoding="async" />
             <span class="scene-play-icon" aria-hidden="true">▶</span>
           </button>
-          <video class="scene-video" hidden playsinline controls>
-            <source src="assets/video/scene-1.mp4" type="video/mp4" />
-          </video>
         </figure>
         <figure class="scene-item reveal">
-          <button class="scene-trigger" type="button" aria-label="Reproducir video" data-i18n-aria="scenePlay">
+          <button class="scene-trigger" type="button" aria-label="Reproducir video" data-i18n-aria="scenePlay" data-video-src="assets/video/scene-2.mp4">
             <img class="scene-poster" src="assets/video/scene-2-poster.jpg" alt="Escena del rodaje de Vos y Yo en un lobby iluminado" data-i18n-alt="sceneAlt2" width="816" height="480" loading="lazy" decoding="async" />
             <span class="scene-play-icon" aria-hidden="true">▶</span>
           </button>
-          <video class="scene-video" hidden playsinline controls>
-            <source src="assets/video/scene-2.mp4" type="video/mp4" />
-          </video>
         </figure>
       </div>
     </div>
   </section>
+
+  <dialog class="scene-modal" id="sceneModal">
+    <button class="scene-modal-close" type="button" aria-label="Cerrar" data-i18n-aria="lightboxClose">✕</button>
+    <video class="scene-modal-video" playsinline controls></video>
+  </dialog>
 
   <dialog class="release-modal" id="releaseModal">
     <button class="release-modal-close" type="button" aria-label="Cerrar" data-i18n-aria="lightboxClose">✕</button>

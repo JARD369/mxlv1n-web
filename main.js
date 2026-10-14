@@ -306,19 +306,35 @@
     });
   }
 
-  /* Behind-the-scenes clips: click the poster to swap in the real <video>
-     with sound and native controls. No autoplay anywhere. */
+  /* Behind-the-scenes clips: click the poster to open the clip in a modal
+     window with native controls. No autoplay anywhere. */
   function initSceneClips() {
-    $$(".scene-item").forEach(function (item) {
-      var trigger = item.querySelector(".scene-trigger");
-      var video = item.querySelector(".scene-video");
-      if (!trigger || !video) return;
+    var dialog = document.getElementById("sceneModal");
+    if (!dialog) return;
+    var video = dialog.querySelector(".scene-modal-video");
+    var closeBtn = dialog.querySelector(".scene-modal-close");
+
+    function stop() {
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    }
+
+    $$(".scene-trigger").forEach(function (trigger) {
       trigger.addEventListener("click", function () {
-        trigger.hidden = true;
-        video.hidden = false;
+        var src = trigger.getAttribute("data-video-src");
+        if (!src) return;
+        video.src = src;
+        dialog.showModal();
         video.play();
       });
     });
+
+    if (closeBtn) closeBtn.addEventListener("click", function () { dialog.close(); stop(); });
+    dialog.addEventListener("click", function (e) {
+      if (e.target === dialog) { dialog.close(); stop(); }
+    });
+    dialog.addEventListener("close", stop);
   }
 
   function boot() {
