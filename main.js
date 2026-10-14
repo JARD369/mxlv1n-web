@@ -306,6 +306,21 @@
     });
   }
 
+  /* Behind-the-scenes clips: click the poster to swap in the real <video>
+     with sound and native controls. No autoplay anywhere. */
+  function initSceneClips() {
+    $$(".scene-item").forEach(function (item) {
+      var trigger = item.querySelector(".scene-trigger");
+      var video = item.querySelector(".scene-video");
+      if (!trigger || !video) return;
+      trigger.addEventListener("click", function () {
+        trigger.hidden = true;
+        video.hidden = false;
+        video.play();
+      });
+    });
+  }
+
   function boot() {
     safe(initStaticSplits, "initStaticSplits");
     safe(initLangSwitch, "initLangSwitch");
@@ -313,6 +328,7 @@
     safe(initReveals, "initReveals");
     safe(mountMusicEmbeds, "mountMusicEmbeds");
     safe(initGalleryLightbox, "initGalleryLightbox");
+    safe(initSceneClips, "initSceneClips");
     safe(setFooterYear, "setFooterYear");
     document.documentElement.classList.add("is-ready");
   }
